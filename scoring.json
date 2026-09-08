@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "description": "Alexander relationsquiz scoring model. Relation compatibility is 0-80. Alexander adds attraction 1-10 later as 0-20 points.",
+  "categoryWeights": {
+    "trust": 20,
+    "freedom": 14,
+    "family": 14,
+    "fun": 12,
+    "independence": 8,
+    "conflict": 6,
+    "everyday": 6
+  },
+  "categoryLabels": {
+    "trust": "Trygghet & stabilitet",
+    "freedom": "Frihet utan kontroll",
+    "family": "Familj & framtid",
+    "fun": "Roligt & socialt",
+    "independence": "Självständighet",
+    "conflict": "Konflikthantering",
+    "everyday": "Vardag & ansvar"
+  },
+  "questions": {
+    "q1":  {"category":"freedom","scores":{"A":4,"B":4,"C":2,"D":0}},
+    "q2":  {"category":"trust","scores":{"A":4,"B":3,"C":1,"D":1}},
+    "q3":  {"category":"fun","scores":{"A":1,"B":4,"C":4,"D":3}},
+    "q4":  {"category":"family","scores":{"A":4,"B":3,"C":1,"D":0}},
+    "q5":  {"category":"family","scores":{"A":4,"B":3,"C":0,"D":0}},
+    "q6":  {"category":"trust","scores":{"A":4,"B":4,"C":1,"D":0}},
+    "q7":  {"category":"freedom","scores":{"A":1,"B":4,"C":4,"D":2}},
+    "q8":  {"category":"conflict","scores":{"A":2,"B":4,"C":2,"D":1}},
+    "q9":  {"category":"independence","scores":{"A":3,"B":4,"C":2,"D":0}},
+    "q10": {"category":"everyday","scores":{"A":4,"B":4,"C":2,"D":1}},
+    "q11": {"category":"trust","scores":{"A":4,"B":3,"C":1,"D":0}},
+    "q12": {"category":"trust","scores":{"A":4,"B":4,"C":1,"D":0}},
+    "q13": {"category":"freedom","scores":{"A":1,"B":4,"C":1,"D":2}},
+    "q14": {"category":"independence","scores":{"A":1,"B":3,"C":4,"D":3}},
+    "q15": {"category":"freedom","scores":{"A":4,"B":4,"C":2,"D":0}},
+    "q16": {"category":"fun","scores":{"A":4,"B":4,"C":2,"D":1}},
+    "q17": {"category":"trust","scores":{"A":4,"B":3,"C":2,"D":0}},
+    "q18": {"category":"conflict","scores":{"A":4,"B":4,"C":1,"D":0}},
+    "q19": {"category":"freedom","scores":{"A":4,"B":4,"C":1,"D":0}},
+    "q20": {"category":"family","scores":{"A":3,"B":4,"C":2,"D":0}},
+    "q21": {"category":"fun","scores":{"A":4,"B":4,"C":3,"D":2}},
+    "q22": {"category":"trust","scores":{"A":4,"B":4,"C":2,"D":0}},
+    "q23": {"category":"fun","scores":{"A":1,"B":2,"C":4,"D":3}},
+    "q24": {"category":"conflict","scores":{"A":4,"B":4,"C":1,"D":0}},
+    "q25": {"category":"trust","scores":{"A":4,"B":4,"C":1,"D":0}},
+    "q26": {"category":"conflict","scores":{"A":4,"B":2,"C":2,"D":0}},
+    "q27": {"category":"everyday","scores":{"A":4,"B":3,"C":2,"D":2}},
+    "q28": {"category":"freedom","scores":{"A":4,"B":4,"C":1,"D":0}},
+    "q29": {"category":"trust","scores":{"A":4,"B":2,"C":3,"D":3}},
+    "q30": {"category":"family","scores":{"A":4,"B":4,"C":2,"D":2}},
+    "q31": {"category":"trust","scores":{"A":4,"B":3,"C":1,"D":0}},
+    "q32": {"category":"family","scores":{"A":4,"B":2,"C":1,"D":0}}
+  },
+  "caps": [
+    {"question":"q4","answer":"D","cap":55,"flag":"Vill inte ha barn"},
+    {"question":"q5","answer":"C","cap":65,"flag":"Barn först om 6-7+ år"},
+    {"question":"q5","answer":"D","cap":55,"flag":"Vill inte planera barn"},
+    {"question":"q17","answer":"D","cap":50,"flag":"Öppen relation"}
+  ],
+  "controlPatternQuestions": ["q1","q6","q12","q15","q19","q25","q28","q31"],
+  "controlPatternRules": [
+    {"minPoints":7,"cap":55,"flag":"Mönster av hög kontroll/svartsjuka"},
+    {"minPoints":5,"cap":60,"flag":"Tydlig tendens till kontroll/svartsjuka"}
+  ],
+  "instructions": "For each category, sum raw points and divide by 4 times the number of questions in that category to get a 0-100 category score. Multiply category score by category weight/100 and sum to get relationshipPoints out of 80. Control-pattern points: C=1, D=2 on controlPatternQuestions. Apply the lowest applicable cap to the final 0-100 score after attraction is added. Before attraction is provided, report relationshipPoints/80 and optionally compatibilityPercent = round(relationshipPoints/80*100). Do not use or store IP address or user agent from Netlify submissions."
+}
