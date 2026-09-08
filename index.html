@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f6f3ee" />
-  <title>Alexander Match Quiz</title>
+  <title>Theres × Alexander</title>
   <style>
     :root{--bg:#f6f3ee;--card:#fff;--text:#171717;--muted:#757575;--line:#e6e0d8;--accent:#111;--ok:#1f6f50;--heart:#e3264f;--heart-dark:#c91840}
     *{box-sizing:border-box}
@@ -110,15 +110,15 @@ const questions = [
 ];
 
 const keys=["A","B","C","D"];
-let state={name:"",i:0,answers:{},backDodges:{}};
+let state={name:"Theres",i:0,answers:{},backDodges:{}};
 const app=document.getElementById('app');
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
 
-function brand(){return `<div class="brand"><span class="brand-dot"></span>Alexander Match Quiz</div>`}
+function brand(){return `<div class="brand"><span class="brand-dot"></span>Theres × Alexander</div>`}
 
 function start(){
-  app.innerHTML=`${brand()}<section class="hero"><div class="eyebrow">Ett högst personligt experiment</div><h1>Okej. Vi testar en sak.</h1><p class="lead">Alexander har tydligen kommit fram till att magkänsla inte räcker hela vägen, så du har blivit handplockad till ett relationsquiz. Målet är enkelt: se hur väl våra sätt att tänka om relationer faktiskt passar ihop.</p><div class="intro-note">32 snabba val om tillit, frihet, familj, socialt liv och vardag. Inga uppsatser, inga rätta svar och förhoppningsvis ingen HR-intervju-känsla. Svara bara spontant.</div></section><section class="card"><label>Vad heter du?<input id="name" type="text" autocomplete="given-name" placeholder="Ditt förnamn"></label><button class="start-btn" id="go">Jag är redo →</button><p class="small">Tar cirka 5–7 minuter. Alexander får bara ditt namn och dina svar.</p></section>`;
-  document.getElementById('go').onclick=()=>{const n=document.getElementById('name').value.trim();if(!n){document.getElementById('name').focus();return}state.name=n;render()};
+  app.innerHTML=`${brand()}<section class="hero"><div class="eyebrow">Ett högst seriöst experiment</div><h1>Theres. Nu får vi facit.</h1><p class="lead">Jag har en teori om att vi synkar rätt bra. Men eftersom magkänsla tydligen inte räcker har jag gjort det enda rimliga: byggt ett relationsquiz åt oss. 32 frågor senare får vi se hur nära verkligheten teorin ligger.</p><div class="intro-note">Svara som du faktiskt tycker – inte vad du tror att jag vill höra. Det här blir mycket roligare om du är brutalt ärlig. Inga rätt eller fel svar. Bara vi, lite statistik och eventuellt ett framtida argument att hänvisa till. 😏</div></section><section class="card"><p class="lead" style="font-size:17px">Specialbyggt för dig. Redo att se om Alexander är en statistiskt försvarbar idé?</p><button class="start-btn" id="go">Okej Alexander, kör då ♥</button><p class="small">Tar cirka 5–7 minuter. Jag får bara dina 32 svar och kan inte se något annat om dig.</p></section>`;
+  document.getElementById('go').onclick=()=>render();
 }
 
 function dodgeBack(btn){
@@ -166,8 +166,8 @@ async function submit(){
 }
 
 function done(){
-  app.innerHTML=`${brand()}<section class="card done"><div class="check">✓</div><h2>Du klarade dig.</h2><p class="lead">Tack ${esc(state.name)}. Dina svar är sparade. Nu återstår bara den högst seriösa analysen.</p><div class="lovebox"><h3>Vill du ligga steget före?</h3><p class="small">Signa upp för Alexanders framtida kärleksbrev. Frekvens, innehåll och existens är än så länge juridiskt oklart.</p><button class="love-btn" id="love">Signa upp för kärleksbrev 💌</button><div class="love-note" id="loveNote"></div></div></section>`;
-  document.getElementById('love').onclick=()=>{document.getElementById('love').disabled=true;document.getElementById('love').textContent='Registrerad ✓';document.getElementById('loveNote').textContent='Leveransdatum: högst oklart. ❤️'};
+  app.innerHTML=`${brand()}<section class="card done"><div class="check">✓</div><h2>Domen är inskickad.</h2><p class="lead">Theres, nu återstår bara att se om vi är en statistiskt försvarbar idé. Jag räknar på svaren – sedan lägger vi på den enda delen algoritmen inte får bestämma: attraktionen.</p><div class="lovebox"><h3>En sista mycket viktig sak…</h3><p class="small">Vill du stå på väntelistan för Alexanders framtida kärleksbrev? Villkoren är tveksamma, leveranstiden oklar och uppsägning kan eventuellt kräva middag.</p><button class="love-btn" id="love">Ja, skicka kärleksbrev 💌</button><div class="love-note" id="loveNote"></div></div></section>`;
+  document.getElementById('love').onclick=()=>{document.getElementById('love').disabled=true;document.getElementById('love').textContent='Registrerad ✓';document.getElementById('loveNote').textContent='Starkt beslut. Jag noterar detta mentalt. ❤️'};
 }
 
 start();
