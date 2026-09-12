@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f3ee">
+<meta name="robots" content="noindex, nofollow">
+<title>Relationsquiz – Linda</title>
+<style>
+:root{color-scheme:light;--bg:#f6f3ee;--ink:#25221f;--muted:#645e57;--line:#ddd5cc;--accent:#ae2448}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,sans-serif;line-height:1.55}
+main{max-width:700px;margin:auto;padding:28px 18px calc(48px + env(safe-area-inset-bottom))}
+.brand{font-size:12px;letter-spacing:.16em;font-weight:750;text-transform:uppercase;color:var(--accent)}
+h1{font:500 clamp(38px,9vw,60px)/1.1 Georgia,serif;margin:24px 0 18px}
+.lead{font-size:18px;color:var(--muted)}.note{font-size:14px;color:var(--muted)}
+.progress{position:sticky;top:0;padding:12px 0;background:var(--bg);z-index:1}
+progress{width:100%;height:10px;accent-color:var(--accent);display:block}
+#count{font-size:13px;font-weight:650}
+fieldset,.name-card{min-width:0;margin:20px 0;padding:22px;background:white;border:1px solid var(--line);border-radius:20px}
+legend{float:left;width:100%;font-size:20px;font-weight:650;line-height:1.4;padding:0;margin-bottom:18px}
+.options{clear:both;display:grid;gap:10px}
+.option{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;min-height:52px}
+.option:has(input:checked){background:#fff1f5;border-color:var(--accent)}
+input[type=radio]{width:20px;height:20px;flex-shrink:0;margin:3px 0 0;accent-color:var(--accent)}
+input[type=text]{width:100%;font:inherit;font-size:16px;padding:12px;border:1px solid var(--line);border-radius:10px;margin-top:8px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+button{width:100%;min-height:52px;font:700 16px system-ui;border:0;border-radius:30px;padding:16px;background:var(--accent);color:white;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}#status{color:#92203d}#success{padding:28px;background:white;border:1px solid var(--line);border-radius:20px}
+[hidden]{display:none!important}@media(max-width:400px){fieldset,.name-card{padding:16px}legend{font-size:18px}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand">Relationsquiz · Linda</div><h1>Hur vill du ha det i en relation?</h1>
+<p class="lead">32 frågor om närhet, tillit, vardag och framtid. Svara spontant A–D. Det finns inga rätta svar.</p>
+<p>Välj det som stämmer bäst med hur du faktiskt fungerar, även om flera alternativ känns rimliga.</p>
+<p class="note">Ditt namn och dina svar skickas till den som ordnar quizet för jämförelse med Linda. Inga resultat visas här. Quizet är ett samtalsunderlag, inte ett vetenskapligt validerat test.</p></header>
+<div class="progress" hidden id="progress"><span id="count">0 av 32 besvarade</span><progress max="32" value="0" aria-label="Antal besvarade frågor"></progress></div>
+<form name="linda-match" method="POST" data-netlify="true" id="quiz">
+<input type="hidden" name="form-name" value="linda-match">
+<div class="name-card"><label for="name"><strong>Ditt namn</strong></label><input id="name" name="name" type="text" autocomplete="given-name" maxlength="100" required></div>
+<fieldset><legend>1. När du är i en seriös relation, vad betyder tillit mest för dig?</legend><div class="options"><label class="option"><input type="radio" name="q1" value="A" required><span><strong>A.</strong> Att vi kan vara ifrån varandra utan att behöva kontrollera</span></label>
+<label class="option"><input type="radio" name="q1" value="B" required><span><strong>B.</strong> Att vi berättar det mesta för varandra</span></label>
+<label class="option"><input type="radio" name="q1" value="C" required><span><strong>C.</strong> Att vi undviker situationer som kan skapa osäkerhet</span></label>
+<label class="option"><input type="radio" name="q1" value="D" required><span><strong>D.</strong> Att partnern visar regelbundet att jag kan känna mig trygg</span></label></div></fieldset>
+<fieldset><legend>2. Om du gjort något som du vet att din partner skulle bli sårad av:</legend><div class="options"><label class="option"><input type="radio" name="q2" value="A" required><span><strong>A.</strong> Jag berättar själv även om det blir jobbigt</span></label>
+<label class="option"><input type="radio" name="q2" value="B" required><span><strong>B.</strong> Jag berättar om hon frågar</span></label>
+<label class="option"><input type="radio" name="q2" value="C" required><span><strong>C.</strong> Det beror på om det fortfarande påverkar relationen</span></label>
+<label class="option"><input type="radio" name="q2" value="D" required><span><strong>D.</strong> Jag kan låta det vara om det bara skapar onödigt bråk</span></label></div></fieldset>
+<fieldset><legend>3. Partnern är osäker på om hon kan lita på dig efter något som hänt tidigare. Vad känns rimligast?</legend><div class="options"><label class="option"><input type="radio" name="q3" value="A" required><span><strong>A.</strong> Jag accepterar att det tar tid och visar konsekvent att jag går att lita på</span></label>
+<label class="option"><input type="radio" name="q3" value="B" required><span><strong>B.</strong> Jag pratar om det när hon behöver men vill också gå vidare</span></label>
+<label class="option"><input type="radio" name="q3" value="C" required><span><strong>C.</strong> Efter en tid måste hon välja att lita på mig</span></label>
+<label class="option"><input type="radio" name="q3" value="D" required><span><strong>D.</strong> Om hon inte kan släppa det blir det hennes problem</span></label></div></fieldset>
+<fieldset><legend>4. Ni har ett stort gräl. Vad gör du spontant?</legend><div class="options"><label class="option"><input type="radio" name="q4" value="A" required><span><strong>A.</strong> Vill lösa det direkt</span></label>
+<label class="option"><input type="radio" name="q4" value="B" required><span><strong>B.</strong> Tar en paus och återkommer när båda är lugnare</span></label>
+<label class="option"><input type="radio" name="q4" value="C" required><span><strong>C.</strong> Behöver mycket tid för mig själv</span></label>
+<label class="option"><input type="radio" name="q4" value="D" required><span><strong>D.</strong> Vill helst släppa saken och gå vidare</span></label></div></fieldset>
+<fieldset><legend>5. Under ett riktigt hett bråk:</legend><div class="options"><label class="option"><input type="radio" name="q5" value="A" required><span><strong>A.</strong> Personangrepp är aldrig okej</span></label>
+<label class="option"><input type="radio" name="q5" value="B" required><span><strong>B.</strong> Man kan säga dumma saker men måste ta ansvar efteråt</span></label>
+<label class="option"><input type="radio" name="q5" value="C" required><span><strong>C.</strong> Det är ganska normalt när känslorna är starka</span></label>
+<label class="option"><input type="radio" name="q5" value="D" required><span><strong>D.</strong> Om båda gör det är det inte så allvarligt</span></label></div></fieldset>
+<fieldset><legend>6. Du inser dagen efter ett bråk att du hade fel.</legend><div class="options"><label class="option"><input type="radio" name="q6" value="A" required><span><strong>A.</strong> Jag säger det rakt ut och ber om ursäkt</span></label>
+<label class="option"><input type="radio" name="q6" value="B" required><span><strong>B.</strong> Jag försöker visa det genom mitt beteende</span></label>
+<label class="option"><input type="radio" name="q6" value="C" required><span><strong>C.</strong> Jag tar upp det om hon fortfarande är ledsen</span></label>
+<label class="option"><input type="radio" name="q6" value="D" required><span><strong>D.</strong> Jag låter hellre saken dö ut</span></label></div></fieldset>
+<fieldset><legend>7. Om samma problem kommer upp fyra gånger:</legend><div class="options"><label class="option"><input type="radio" name="q7" value="A" required><span><strong>A.</strong> Då behöver jag faktiskt förändra något</span></label>
+<label class="option"><input type="radio" name="q7" value="B" required><span><strong>B.</strong> Vi behöver förstå varför vi uppfattar problemet så olika</span></label>
+<label class="option"><input type="radio" name="q7" value="C" required><span><strong>C.</strong> Hon måste också fundera på varför hon fastnar i det</span></label>
+<label class="option"><input type="radio" name="q7" value="D" required><span><strong>D.</strong> Jag blir frustrerad över att vi inte kan släppa gamla saker</span></label></div></fieldset>
+<fieldset><legend>8. Hur vill du att vardagen i ett långt förhållande ska kännas?</legend><div class="options"><label class="option"><input type="radio" name="q8" value="A" required><span><strong>A.</strong> Väldigt nära och mycket gemensam tid</span></label>
+<label class="option"><input type="radio" name="q8" value="B" required><span><strong>B.</strong> Mycket tillsammans men tydliga egna liv också</span></label>
+<label class="option"><input type="radio" name="q8" value="C" required><span><strong>C.</strong> Ganska självständigt med kvalitativ tid tillsammans</span></label>
+<label class="option"><input type="radio" name="q8" value="D" required><span><strong>D.</strong> Väldigt fritt och spontant</span></label></div></fieldset>
+<fieldset><legend>9. Din partner vill ha en hel dag eller kväll med sina vänner utan dig.</legend><div class="options"><label class="option"><input type="radio" name="q9" value="A" required><span><strong>A.</strong> Perfekt, jag gör något eget</span></label>
+<label class="option"><input type="radio" name="q9" value="B" required><span><strong>B.</strong> Helt normalt, så länge vi också prioriterar relationen</span></label>
+<label class="option"><input type="radio" name="q9" value="C" required><span><strong>C.</strong> Okej, men inte alltför ofta</span></label>
+<label class="option"><input type="radio" name="q9" value="D" required><span><strong>D.</strong> Jag föredrar att vi oftast gör saker tillsammans</span></label></div></fieldset>
+<fieldset><legend>10. Hur viktigt är det att känna sig prioriterad av sin partner?</legend><div class="options"><label class="option"><input type="radio" name="q10" value="A" required><span><strong>A.</strong> Avgörande</span></label>
+<label class="option"><input type="radio" name="q10" value="B" required><span><strong>B.</strong> Väldigt viktigt</span></label>
+<label class="option"><input type="radio" name="q10" value="C" required><span><strong>C.</strong> Viktigt men behöver inte märkas hela tiden</span></label>
+<label class="option"><input type="radio" name="q10" value="D" required><span><strong>D.</strong> Jag tänker sällan på sådant</span></label></div></fieldset>
+<fieldset><legend>11. Din partner säger: ”Jag känner mig inte prioriterad just nu.”</legend><div class="options"><label class="option"><input type="radio" name="q11" value="A" required><span><strong>A.</strong> Jag frågar vad hon konkret saknar och försöker ändra det</span></label>
+<label class="option"><input type="radio" name="q11" value="B" required><span><strong>B.</strong> Jag förklarar också hur jag upplever situationen</span></label>
+<label class="option"><input type="radio" name="q11" value="C" required><span><strong>C.</strong> Jag påminner om allt jag redan gör</span></label>
+<label class="option"><input type="radio" name="q11" value="D" required><span><strong>D.</strong> Jag tycker att man själv ansvarar mycket för den känslan</span></label></div></fieldset>
+<fieldset><legend>12. Vad betyder romantik efter flera år tillsammans?</legend><div class="options"><label class="option"><input type="radio" name="q12" value="A" required><span><strong>A.</strong> Små handlingar och fysisk närhet i vardagen</span></label>
+<label class="option"><input type="radio" name="q12" value="B" required><span><strong>B.</strong> Dejter och planerade saker tillsammans</span></label>
+<label class="option"><input type="radio" name="q12" value="C" required><span><strong>C.</strong> Resor och större upplevelser</span></label>
+<label class="option"><input type="radio" name="q12" value="D" required><span><strong>D.</strong> Romantik blir mindre viktigt när relationen är trygg</span></label></div></fieldset>
+<fieldset><legend>13. Hur viktigt är ett bra sexliv för att du ska vara lycklig i ett långt förhållande?</legend><div class="options"><label class="option"><input type="radio" name="q13" value="A" required><span><strong>A.</strong> Inte särskilt viktigt</span></label>
+<label class="option"><input type="radio" name="q13" value="B" required><span><strong>B.</strong> Viktigt</span></label>
+<label class="option"><input type="radio" name="q13" value="C" required><span><strong>C.</strong> Mycket viktigt</span></label>
+<label class="option"><input type="radio" name="q13" value="D" required><span><strong>D.</strong> En av relationens viktigaste delar</span></label></div></fieldset>
+<fieldset><legend>14. Om sexlivet börjar bli dåligt under flera månader:</legend><div class="options"><label class="option"><input type="radio" name="q14" value="A" required><span><strong>A.</strong> Jag vill prata öppet och aktivt försöka förbättra det</span></label>
+<label class="option"><input type="radio" name="q14" value="B" required><span><strong>B.</strong> Jag avvaktar lite och ser om det löser sig</span></label>
+<label class="option"><input type="radio" name="q14" value="C" required><span><strong>C.</strong> Jag skulle känna mig frustrerad men ha svårt att prata om det</span></label>
+<label class="option"><input type="radio" name="q14" value="D" required><span><strong>D.</strong> Jag tycker att det är normalt att sex försvinner med tiden</span></label></div></fieldset>
+<fieldset><legend>15. Hur viktigt är fysisk attraktion efter många år?</legend><div class="options"><label class="option"><input type="radio" name="q15" value="A" required><span><strong>A.</strong> Inte särskilt</span></label>
+<label class="option"><input type="radio" name="q15" value="B" required><span><strong>B.</strong> Ganska viktigt</span></label>
+<label class="option"><input type="radio" name="q15" value="C" required><span><strong>C.</strong> Mycket viktigt</span></label>
+<label class="option"><input type="radio" name="q15" value="D" required><span><strong>D.</strong> Avgörande för att relationen ska fungera</span></label></div></fieldset>
+<fieldset><legend>16. Hur mycket personlig frihet behöver du?</legend><div class="options"><label class="option"><input type="radio" name="q16" value="A" required><span><strong>A.</strong> Ganska lite</span></label>
+<label class="option"><input type="radio" name="q16" value="B" required><span><strong>B.</strong> En bra balans</span></label>
+<label class="option"><input type="radio" name="q16" value="C" required><span><strong>C.</strong> Mycket</span></label>
+<label class="option"><input type="radio" name="q16" value="D" required><span><strong>D.</strong> Väldigt mycket</span></label></div></fieldset>
+<fieldset><legend>17. Din partner vill resa några dagar utan dig.</legend><div class="options"><label class="option"><input type="radio" name="q17" value="A" required><span><strong>A.</strong> Kul för henne</span></label>
+<label class="option"><input type="radio" name="q17" value="B" required><span><strong>B.</strong> Inga problem så länge relationen fungerar bra</span></label>
+<label class="option"><input type="radio" name="q17" value="C" required><span><strong>C.</strong> Jag skulle känna mig lite bortvald</span></label>
+<label class="option"><input type="radio" name="q17" value="D" required><span><strong>D.</strong> Jag hade varit obekväm med det</span></label></div></fieldset>
+<fieldset><legend>18. Vad tycker du om svartsjuka?</legend><div class="options"><label class="option"><input type="radio" name="q18" value="A" required><span><strong>A.</strong> Så lite som möjligt</span></label>
+<label class="option"><input type="radio" name="q18" value="B" required><span><strong>B.</strong> Lite är ganska naturligt</span></label>
+<label class="option"><input type="radio" name="q18" value="C" required><span><strong>C.</strong> Det visar ibland att man bryr sig</span></label>
+<label class="option"><input type="radio" name="q18" value="D" required><span><strong>D.</strong> En partner bör anpassa sitt beteende för att undvika att jag blir svartsjuk</span></label></div></fieldset>
+<fieldset><legend>19. Din partner har vänner av motsatt kön.</legend><div class="options"><label class="option"><input type="radio" name="q19" value="A" required><span><strong>A.</strong> Inga problem med tydliga gränser</span></label>
+<label class="option"><input type="radio" name="q19" value="B" required><span><strong>B.</strong> Okej om jag känner mig trygg med relationerna</span></label>
+<label class="option"><input type="radio" name="q19" value="C" required><span><strong>C.</strong> Jag skulle helst vilja begränsa det</span></label>
+<label class="option"><input type="radio" name="q19" value="D" required><span><strong>D.</strong> Jag tycker inte det hör hemma i en seriös relation</span></label></div></fieldset>
+<fieldset><legend>20. Hur viktigt är det att du och din partner har samma vänkrets?</legend><div class="options"><label class="option"><input type="radio" name="q20" value="A" required><span><strong>A.</strong> Inte särskilt</span></label>
+<label class="option"><input type="radio" name="q20" value="B" required><span><strong>B.</strong> Bra om grupperna fungerar ihop</span></label>
+<label class="option"><input type="radio" name="q20" value="C" required><span><strong>C.</strong> Ganska viktigt</span></label>
+<label class="option"><input type="radio" name="q20" value="D" required><span><strong>D.</strong> Jag vill helst att vi har ett väldigt gemensamt socialt liv</span></label></div></fieldset>
+<fieldset><legend>21. Vilken partner attraheras du mest av långsiktigt?</legend><div class="options"><label class="option"><input type="radio" name="q21" value="A" required><span><strong>A.</strong> Lugn och stabil</span></label>
+<label class="option"><input type="radio" name="q21" value="B" required><span><strong>B.</strong> Varm och omhändertagande</span></label>
+<label class="option"><input type="radio" name="q21" value="C" required><span><strong>C.</strong> Självsäker och självständig</span></label>
+<label class="option"><input type="radio" name="q21" value="D" required><span><strong>D.</strong> Spontan och intensiv</span></label></div></fieldset>
+<fieldset><legend>22. Hur ser du på ambition och arbete?</legend><div class="options"><label class="option"><input type="radio" name="q22" value="A" required><span><strong>A.</strong> Jag vill hela tiden utvecklas och komma framåt</span></label>
+<label class="option"><input type="radio" name="q22" value="B" required><span><strong>B.</strong> Jag vill ha ett bra och stabilt liv</span></label>
+<label class="option"><input type="radio" name="q22" value="C" required><span><strong>C.</strong> Jobb är viktigt men inte något jag definierar mig genom</span></label>
+<label class="option"><input type="radio" name="q22" value="D" required><span><strong>D.</strong> Jag prioriterar hellre fritid än karriär</span></label></div></fieldset>
+<fieldset><legend>23. Om din partner är mer ambitiös än du:</legend><div class="options"><label class="option"><input type="radio" name="q23" value="A" required><span><strong>A.</strong> Det inspirerar mig</span></label>
+<label class="option"><input type="radio" name="q23" value="B" required><span><strong>B.</strong> Det spelar ingen roll</span></label>
+<label class="option"><input type="radio" name="q23" value="C" required><span><strong>C.</strong> Jag skulle känna viss press</span></label>
+<label class="option"><input type="radio" name="q23" value="D" required><span><strong>D.</strong> Det skulle kunna skapa problem</span></label></div></fieldset>
+<fieldset><legend>24. Vilken helg låter bäst?</legend><div class="options"><label class="option"><input type="radio" name="q24" value="A" required><span><strong>A.</strong> Mest hemma, laga mat och ta det lugnt</span></label>
+<label class="option"><input type="radio" name="q24" value="B" required><span><strong>B.</strong> En lugn dag och en social kväll</span></label>
+<label class="option"><input type="radio" name="q24" value="C" required><span><strong>C.</strong> Middagar, vänner och aktiviteter</span></label>
+<label class="option"><input type="radio" name="q24" value="D" required><span><strong>D.</strong> Ingen plan alls – vi bestämmer spontant</span></label></div></fieldset>
+<fieldset><legend>25. Hur känner du kring barn?</legend><div class="options"><label class="option"><input type="radio" name="q25" value="A" required><span><strong>A.</strong> Jag vill definitivt ha barn</span></label>
+<label class="option"><input type="radio" name="q25" value="B" required><span><strong>B.</strong> Jag tror att jag vill ha barn</span></label>
+<label class="option"><input type="radio" name="q25" value="C" required><span><strong>C.</strong> Jag är osäker</span></label>
+<label class="option"><input type="radio" name="q25" value="D" required><span><strong>D.</strong> Jag vill inte ha barn</span></label></div></fieldset>
+<fieldset><legend>26. Om din partner definitivt inte vill ha barn men du gör det:</legend><div class="options"><label class="option"><input type="radio" name="q26" value="A" required><span><strong>A.</strong> Då är vi sannolikt inte rätt för varandra</span></label>
+<label class="option"><input type="radio" name="q26" value="B" required><span><strong>B.</strong> Jag skulle behöva tänka väldigt noga</span></label>
+<label class="option"><input type="radio" name="q26" value="C" required><span><strong>C.</strong> Jag skulle kunna välja relationen istället</span></label>
+<label class="option"><input type="radio" name="q26" value="D" required><span><strong>D.</strong> Jag tror att någon av oss kan ändra sig senare</span></label></div></fieldset>
+<fieldset><legend>27. När du föreställer dig ditt liv om tio år är relationen främst:</legend><div class="options"><label class="option"><input type="radio" name="q27" value="A" required><span><strong>A.</strong> Mittpunkten kring vilken mycket annat byggs</span></label>
+<label class="option"><input type="radio" name="q27" value="B" required><span><strong>B.</strong> En viktig del tillsammans med vänner, arbete och egna intressen</span></label>
+<label class="option"><input type="radio" name="q27" value="C" required><span><strong>C.</strong> Ett tryggt partnerskap men med mycket individuella liv</span></label>
+<label class="option"><input type="radio" name="q27" value="D" required><span><strong>D.</strong> Något jag vill ha men inte planera livet omkring</span></label></div></fieldset>
+<fieldset><legend>28. Om din partner är ledsen men du själv tycker att hon överreagerar:</legend><div class="options"><label class="option"><input type="radio" name="q28" value="A" required><span><strong>A.</strong> Jag försöker först förstå känslan innan jag diskuterar sakfrågan</span></label>
+<label class="option"><input type="radio" name="q28" value="B" required><span><strong>B.</strong> Jag lyssnar och förklarar sedan min sida</span></label>
+<label class="option"><input type="radio" name="q28" value="C" required><span><strong>C.</strong> Jag säger ganska direkt att jag tycker reaktionen är för stor</span></label>
+<label class="option"><input type="radio" name="q28" value="D" required><span><strong>D.</strong> Jag ger henne utrymme tills hon lugnat sig</span></label></div></fieldset>
+<fieldset><legend>29. Vad är viktigast när två personer ser helt olika på ett problem?</legend><div class="options"><label class="option"><input type="radio" name="q29" value="A" required><span><strong>A.</strong> Att båda känner sig förstådda</span></label>
+<label class="option"><input type="radio" name="q29" value="B" required><span><strong>B.</strong> Att hitta en praktisk kompromiss</span></label>
+<label class="option"><input type="radio" name="q29" value="C" required><span><strong>C.</strong> Att komma fram till vem som faktiskt har rätt</span></label>
+<label class="option"><input type="radio" name="q29" value="D" required><span><strong>D.</strong> Att kunna släppa problemet</span></label></div></fieldset>
+<fieldset><legend>30. Om du fick välja vilken känsla din partner oftast ska ha med dig:</legend><div class="options"><label class="option"><input type="radio" name="q30" value="A" required><span><strong>A.</strong> Trygg</span></label>
+<label class="option"><input type="radio" name="q30" value="B" required><span><strong>B.</strong> Förälskad</span></label>
+<label class="option"><input type="radio" name="q30" value="C" required><span><strong>C.</strong> Fri</span></label>
+<label class="option"><input type="radio" name="q30" value="D" required><span><strong>D.</strong> Utmanad och inspirerad</span></label></div></fieldset>
+<fieldset><legend>31. Om din partner efter flera år fortfarande tar upp ett gammalt svek:</legend><div class="options"><label class="option"><input type="radio" name="q31" value="A" required><span><strong>A.</strong> Jag försöker förstå vad som fortfarande saknas för att det ska läka</span></label>
+<label class="option"><input type="radio" name="q31" value="B" required><span><strong>B.</strong> Jag lyssnar men behöver också att vi går vidare</span></label>
+<label class="option"><input type="radio" name="q31" value="C" required><span><strong>C.</strong> Jag skulle bli ganska frustrerad</span></label>
+<label class="option"><input type="radio" name="q31" value="D" required><span><strong>D.</strong> Jag tycker att gamla saker ska lämnas i det förflutna</span></label></div></fieldset>
+<fieldset><legend>32. Vilket förhållande väljer du?</legend><div class="options"><label class="option"><input type="radio" name="q32" value="A" required><span><strong>A.</strong> Väldigt tryggt men ganska förutsägbart</span></label>
+<label class="option"><input type="radio" name="q32" value="B" required><span><strong>B.</strong> Tryggt med stark attraktion och lagom mycket eget liv</span></label>
+<label class="option"><input type="radio" name="q32" value="C" required><span><strong>C.</strong> Intensivt och passionerat med fler konflikter</span></label>
+<label class="option"><input type="radio" name="q32" value="D" required><span><strong>D.</strong> Väldigt fritt men mindre emotionellt beroende</span></label></div></fieldset>
+<p class="note">Du kan ändra dina svar innan du skickar. Bara ditt namn och dina 32 svar sparas.</p>
+<button type="submit" id="send">Skicka mina svar</button>
+<p id="status" role="alert"></p>
+</form>
+<section id="success" hidden tabindex="-1"><h2>Tack! Dina svar är inskickade.</h2><p>Du är klar och kan stänga sidan. Svaren kan nu användas för en gemensam genomgång.</p></section>
+</main>
+<script>
+const form=document.getElementById('quiz');
+const button=document.getElementById('send');
+const status=document.getElementById('status');
+const progress=document.getElementById('progress');
+progress.hidden=false;
+form.addEventListener('change',()=>{
+ const count=form.querySelectorAll('input[type=radio]:checked').length;
+ document.getElementById('count').textContent=count+' av 32 besvarade';
+ progress.querySelector('progress').value=count;
+});
+form.addEventListener('submit',async event=>{
+ event.preventDefault();
+ if(button.disabled)return;
+ const name=form.elements.namedItem('name');
+ name.value=name.value.trim();
+ if(!form.reportValidity())return;
+ button.disabled=true;button.textContent='Skickar…';status.textContent='';
+ try{
+  const response=await fetch('/linda/',{
+   method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+   body:new URLSearchParams(new FormData(form)).toString()
+  });
+  if(!response.ok)throw new Error('Submission failed');
+  form.hidden=true;progress.hidden=true;
+  const success=document.getElementById('success');
+  success.hidden=false;success.focus();
+ }catch(error){
+  status.textContent='Det gick inte att skicka just nu. Dina svar finns kvar på sidan. Försök igen.';
+  button.disabled=false;button.textContent='Försök skicka igen';
+ }
+});
+</script>
+</body>
+</html>
