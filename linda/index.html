@@ -36,8 +36,9 @@ button:disabled{opacity:.6;cursor:wait}#status{color:#92203d}#success{padding:28
 <p>Välj det som stämmer bäst med hur du faktiskt fungerar, även om flera alternativ känns rimliga.</p>
 <p class="note">Ditt namn och dina svar skickas till den som ordnar quizet för jämförelse med Linda. Inga resultat visas här. Quizet är ett samtalsunderlag, inte ett vetenskapligt validerat test.</p></header>
 <div class="progress" hidden id="progress"><span id="count">0 av 32 besvarade</span><progress max="32" value="0" aria-label="Antal besvarade frågor"></progress></div>
-<form name="linda-match" method="POST" action="https://relationsquiz.netlify.app/linda/" target="_blank" data-netlify="true" id="quiz">
+<form name="linda-match" method="POST" action="https://relationsquiz.netlify.app/linda/" target="_blank" data-netlify="true" netlify-honeypot="bot-field" id="quiz">
 <input type="hidden" name="form-name" value="linda-match">
+<p hidden><label>Lämna tomt: <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label></p>
 <div class="name-card"><label for="name"><strong>Ditt namn</strong></label><input id="name" name="name" type="text" autocomplete="given-name" maxlength="100" required></div>
 <fieldset><legend>1. När du är i en seriös relation, vad betyder tillit mest för dig?</legend><div class="options"><label class="option"><input type="radio" name="q1" value="A" required><span><strong>A.</strong> Att vi kan vara ifrån varandra utan att behöva kontrollera</span></label>
 <label class="option"><input type="radio" name="q1" value="B" required><span><strong>B.</strong> Att vi berättar det mesta för varandra</span></label>
@@ -227,6 +228,7 @@ form.addEventListener('submit',async event=>{
   const response=await fetch('/linda/',{
    method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
    body:new URLSearchParams(new FormData(form)).toString(),
+   redirect:'error',
    signal:AbortSignal.timeout(30000)
   });
   if(!response.ok)throw new Error('Submission failed');
@@ -242,4 +244,3 @@ form.addEventListener('submit',async event=>{
 </script>
 </body>
 </html>
-
