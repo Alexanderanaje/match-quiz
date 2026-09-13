@@ -36,7 +36,7 @@ button:disabled{opacity:.6;cursor:wait}#status{color:#92203d}#success{padding:28
 <p>Välj det som stämmer bäst med hur du faktiskt fungerar, även om flera alternativ känns rimliga.</p>
 <p class="note">Ditt namn och dina svar skickas till den som ordnar quizet för jämförelse med Linda. Inga resultat visas här. Quizet är ett samtalsunderlag, inte ett vetenskapligt validerat test.</p></header>
 <div class="progress" hidden id="progress"><span id="count">0 av 32 besvarade</span><progress max="32" value="0" aria-label="Antal besvarade frågor"></progress></div>
-<form name="linda-match" method="POST" data-netlify="true" id="quiz">
+<form name="linda-match" method="POST" action="https://relationsquiz.netlify.app/linda/" target="_blank" data-netlify="true" id="quiz">
 <input type="hidden" name="form-name" value="linda-match">
 <div class="name-card"><label for="name"><strong>Ditt namn</strong></label><input id="name" name="name" type="text" autocomplete="given-name" maxlength="100" required></div>
 <fieldset><legend>1. När du är i en seriös relation, vad betyder tillit mest för dig?</legend><div class="options"><label class="option"><input type="radio" name="q1" value="A" required><span><strong>A.</strong> Att vi kan vara ifrån varandra utan att behöva kontrollera</span></label>
@@ -170,6 +170,7 @@ button:disabled{opacity:.6;cursor:wait}#status{color:#92203d}#success{padding:28
 <p class="note">Du kan ändra dina svar innan du skickar. Bara ditt namn och dina 32 svar sparas.</p>
 <button type="submit" id="send">Skicka mina svar</button>
 <p id="status" role="alert"></p>
+<p id="draft-status" class="note" role="status"></p>
 </form>
 <section id="success" hidden tabindex="-1"><h2>Tack! Dina svar är inskickade.</h2><p>Du är klar och kan stänga sidan. Svaren kan nu användas för en gemensam genomgång.</p></section>
 </main>
@@ -178,25 +179,58 @@ const form=document.getElementById('quiz');
 const button=document.getElementById('send');
 const status=document.getElementById('status');
 const progress=document.getElementById('progress');
-progress.hidden=false;
-form.addEventListener('change',()=>{
+const draftKey='linda-match-draft-v1';
+const draftStatus=document.getElementById('draft-status');
+const isLocal=location.protocol==='file:';
+function saveDraft(){
+ try{
+  sessionStorage.setItem(draftKey,JSON.stringify(Object.fromEntries(new FormData(form))));
+  draftStatus.textContent='Utkast sparat i den här fliken. Svaren finns kvar vid omladdning.';
+ }catch{
+  draftStatus.textContent='Utkast kan inte sparas i denna webbläsare. Låt fliken vara öppen tills svaren har skickats.';
+ }
+}
+function updateProgress(){
  const count=form.querySelectorAll('input[type=radio]:checked').length;
  document.getElementById('count').textContent=count+' av 32 besvarade';
  progress.querySelector('progress').value=count;
-});
+}
+try{
+ const draft=JSON.parse(sessionStorage.getItem(draftKey)||'null');
+ if(draft && typeof draft==='object'){
+  if(typeof draft.name==='string')form.elements.namedItem('name').value=draft.name.slice(0,100);
+  for(let i=1;i<=32;i++){
+   if(/^[ABCD]$/.test(draft['q'+i]))form.elements.namedItem('q'+i).value=draft['q'+i];
+  }
+  draftStatus.textContent='Ditt sparade utkast har återställts.';
+ }
+}catch{}
+if(isLocal){
+ status.textContent='Du har öppnat en lokal kopia. Skicka öppnar Netlify i en ny flik; dina svar ligger kvar här.';
+}
+form.addEventListener('input',saveDraft);
+updateProgress();
+progress.hidden=false;
+form.addEventListener('change',()=>{updateProgress();saveDraft();});
 form.addEventListener('submit',async event=>{
- event.preventDefault();
- if(button.disabled)return;
+ if(button.disabled){event.preventDefault();return;}
  const name=form.elements.namedItem('name');
  name.value=name.value.trim();
- if(!form.reportValidity())return;
+ if(!form.reportValidity()){event.preventDefault();return;}
+ saveDraft();
+ // Native cross-origin POST works from file:// without a CORS fetch.
+ // A new tab preserves the filled local form, including after a failed POST.
+ if(isLocal)return;
+ event.preventDefault();
  button.disabled=true;button.textContent='Skickar…';status.textContent='';
  try{
   const response=await fetch('/linda/',{
    method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
-   body:new URLSearchParams(new FormData(form)).toString()
+   body:new URLSearchParams(new FormData(form)).toString(),
+   signal:AbortSignal.timeout(30000)
   });
   if(!response.ok)throw new Error('Submission failed');
+  try{sessionStorage.removeItem(draftKey);}catch{}
   form.hidden=true;progress.hidden=true;
   const success=document.getElementById('success');
   success.hidden=false;success.focus();
@@ -208,3 +242,4 @@ form.addEventListener('submit',async event=>{
 </script>
 </body>
 </html>
+
